@@ -10,25 +10,31 @@
     <link rel="stylesheet" href="styles/main.css" />
   </head>
 
-  <body ng-app="rollCall">
+  <body ng-app="rollcall">
+
+    <div ui-view></div>
+
 
 
 
     <!-- JS LIBS -->
     <script src="node_modules/angular/angular.js"></script>
     <script src="node_modules/angular-animate/angular-animate.js"></script>
+    <script src="node_modules/angular-resource/angular-resource.js"></script>
     <script src="node_modules/angular-aria/angular-aria.js"></script>
     <script src="node_modules/angular-material/angular-material.js"></script>
     <script src="node_modules/angular-messages/angular-messages.js"></script>
     <script src="node_modules/moment/moment.js"></script>
     <script src="node_modules/angular-moment/angular-moment.js"></script>
     <script src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="node_modules/firebase/firebase-web.js"></script>
+    <script src="bower_components/firebase/firebase.js"></script>
+    <script src="node_modules/angularfire/dist/angularfire.js"></script>
     <!-- ROLLCALL ANGULAR CODE -->
-    <script src="scripts/app.js"></script>
+    <script src="js/app.js"></script>
     <!-- CONTROLLERS -->
-
+    <script src="js/controllers/loginController.js"></script>
     <!-- SERVICES -->
-    
+    <script src="js/services/auth.js"></script>
+
   </body>
 </html>

@@ -17,5 +17,10 @@ var app = angular.module('rollcall', [
     url: '/login',
     templateUrl: 'views/login.html',
     controller: 'loginController'
+  })
+  .state('dashboard', {
+    url: '/dashboard',
+    templateUrl: 'views/dashboard.html',
+    //controller: 'dashController'
   });
 });
