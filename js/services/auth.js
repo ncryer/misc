@@ -1,4 +1,4 @@
-app.factory('Auth', function(FURL, $firebaseAuth, $firebase){
+app.factory('Auth', function(FURL, $firebaseAuth, $firebaseObject){
 
   var ref = new Firebase(FURL);
   var auth = $firebaseAuth(ref);
@@ -23,7 +23,8 @@ app.factory('Auth', function(FURL, $firebaseAuth, $firebase){
     if(authData){
       angular.copy(authData, Auth.user);
       // Set the profile
-      Auth.user.profile = $firebase(ref.child('profile').child(authData.uid)).$asObject();
+      // Auth.user.profile = $firebase(ref.child('profile').child(authData.uid)).$asObject();
+      Auth.user.profile = $firebaseObject(ref.child('profile').child(authData.uid));
     } else {
       if(Auth.user && Auth.user.profile){
         Auth.user.profile.$destroy();
@@ -31,5 +32,5 @@ app.factory('Auth', function(FURL, $firebaseAuth, $firebase){
       angular.copy({}, Auth.user);
     }
   });
-  return Auth
+  return Auth;
 });

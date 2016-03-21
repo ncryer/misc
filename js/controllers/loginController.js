@@ -1,4 +1,4 @@
-app.controller('loginController', function($scope, $state, $firebase, Auth){
+app.controller('loginController', function($scope, $state, Auth){
 
   var self = $scope;
 
@@ -10,4 +10,7 @@ app.controller('loginController', function($scope, $state, $firebase, Auth){
       console.log('error logging in');
     });
   };
+
+
+  // Function to handle opening of login dialog
 });
