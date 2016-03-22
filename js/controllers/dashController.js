@@ -5,7 +5,5 @@ app.controller('dashController', function($scope, $state, Auth){
   self.logout = function(){
     Auth.logout();
     $state.transitionTo('login');
-    console.log('Logged out, here is user:');
-    console.log(Auth.user);
   }
 });

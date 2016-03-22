@@ -13,6 +13,24 @@ var app = angular.module('rollcall', [
 
 
   // root
+  // $stateProvider.state('login', {
+  //   url: '/login',
+  //   views: {
+  //     "master": {
+  //       templateUrl: 'views/login.html',
+  //       controller: 'loginController'
+  //     }
+  //   }
+  // })
+  // .state('dashboard', {
+  //   url: '/dashboard',
+  //   views: {
+  //     "master": {
+  //       templateUrl: 'views/dashboard.html',
+  //       controller: 'dashController'
+  //     }
+  //   }
+  // })
   $stateProvider.state('login', {
     url: '/login',
     templateUrl: 'views/login.html',

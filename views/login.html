@@ -1,10 +1,10 @@
-<div flex>
-  <section layout="column" layout-align="center center" class="login">
-    <!-- Form container -->
-    <md-card md-whiteframe="10">
+<div id="login-screen" layout="row" layout-fill>
+  <section layout="column" layout-align="center center" flex class="login">
+
+    <md-card md-whiteframe="4" class="login-form">
       <md-toolbar>
         <div layout="column" layout-padding layout-align="center center">
-          <div>
+          <div flex>
             <md-icon md-font-icon="bower_components/material-design-icons/ic_home_black_24dp_2x.png">Login</md-icon>
           </div>
         </div>
@@ -31,12 +31,13 @@
 
 
     </md-card>
+
   </section>
 </div>
 
 <!-- TODO: Add error message to the form itself -->
 <!-- TODO: Add spinner while user is logging in (firebase is sometimes slow) -->
 
-<div ui-view>
+<div ui-view class="login-screen">
 
 </div>
