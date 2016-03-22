@@ -21,6 +21,11 @@ var app = angular.module('rollcall', [
   .state('dashboard', {
     url: '/dashboard',
     templateUrl: 'views/dashboard.html',
-    //controller: 'dashController'
-  });
+    controller: 'dashController'
+  })
+  .state('clients', {
+    url: '/clients',
+    templateUrl: 'views/partials/clients.html',
+    parent: 'dashboard'
+  })
 });

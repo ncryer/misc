@@ -15,6 +15,10 @@ app.factory('Auth', function(FURL, $firebaseAuth, $firebaseObject){
 
     signedIn: function(){
       return !!Auth.user.provider;
+    },
+
+    logout: function(){
+      return auth.$unauth;
     }
   };
 
