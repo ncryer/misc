@@ -17,6 +17,18 @@
   top: 0px; left: 0; bottom: 75px; right: 0;
 }
 
+
+
+/*[ui-view].ng-enter, [ui-view].ng-leave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  -webkit-transition:all 1s ease-in-out;
+    -moz-transition:all 1s ease-in-out;
+    -o-transition:all 1s ease-in-out;
+    transition:all 1s ease-in-out;
+}*/
+
 /*APPLYING ANIMATIONS*/
 
 /*
@@ -48,10 +60,25 @@
   animation: fadeOutDown 1s;
   -webkit-animation: fadeOutDown 1s;
   -moz-animation: fadeOutDown 1s;
+  opacity: 1;
+}
+
+[ui-view].ng-leave-active #login-screen {
+  animation: fadeOutDown 1s;
+  -webkit-animation: fadeOutDown 1s;
+  -moz-animation: fadeOutDown 1s;
   opacity: 0;
 }
 
+
 [ui-view].ng-enter #login-screen {
+  animation: fadeInUp 1s;
+  -webkit-animation: fadeInUp 1s;
+  -moz-animation: fadeInUp 1s;
+  opacity: 0;
+}
+
+[ui-view].ng-enter-active #login-screen {
   animation: fadeInUp 1s;
   -webkit-animation: fadeInUp 1s;
   -moz-animation: fadeInUp 1s;
@@ -59,6 +86,13 @@
 }
 
 [ui-view].ng-leave #dashboard-box {
+  animation: fadeOutUp 1s;
+  -webkit-animation: fadeOutUp 1s;
+  -moz-animation: fadeOutUp 1s;
+  opacity: 1;
+}
+
+[ui-view].ng-leave-active #dashboard-box {
   animation: fadeOutUp 1s;
   -webkit-animation: fadeOutUp 1s;
   -moz-animation: fadeOutUp 1s;
@@ -70,6 +104,13 @@
   -webkit-animation: fadeInDown 1s;
   -moz-animation: fadeInDown 1s;
   opacity: 0;
+}
+
+[ui-view].ng-enter-active #dashboard-box {
+  animation: fadeInDown 1s;
+  -webkit-animation: fadeInDown 1s;
+  -moz-animation: fadeInDown 1s;
+  opacity: 1;
 }
 
 /*[ui-view].ng-enter #sidebar-container {
