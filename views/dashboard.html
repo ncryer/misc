@@ -1,13 +1,11 @@
-
-<div layout="row" id="dashboard-box">
-  <div flex="10" >
-    <!-- SIDENAV  -->
-    <md-sidenav md-is-locked-open="true" class="md-sidenav-left" layout="column" md-whiteframe="3" layout-fill id="sidebar-container">
-    <!-- Here should be a little thingy in the top left corner -->
-    <md-toolbar layout-align="center center">
+<div layout="row" layout-fill id="dashboard-box">
+  <!-- SIDENAV  -->
+  <md-sidenav md-is-locked-open="true" class="md-sidenav-left" layout="column" md-whiteframe="3" layout-fill id="sidebar-container" md-component-id="left">
+  <!-- Here should be a little thingy in the top left corner -->
+    <md-toolbar layout-align="center center" class="md-whiteframe-z2">
       <h1>Topleft</h1>
     </md-toolbar>
-    <!-- But it's not implemented yet -->
+  <!-- But it's not implemented yet -->
 
 
     <!-- MENU ITEMS -->
@@ -69,36 +67,24 @@
       </md-list-item>
 
     </md-list>
+  </md-sidenav>
 
+  <!-- TOP TOOLBAR AND CONTENT -->
 
-    </md-sidenav>
-  </div>
-
-  <div flex="90" id="main-content-container">
-
-
-
-    <!-- TOP TOOLBAR -->
-    <md-toolbar flex layout="row" layout-align="end center" md-whiteframe="3" id="top-toolbar">
-        <md-button ng-click="logout()" ui-sref="login">
-          <div class="md-tile-content">
-            <md-icon md-svg-src="bower_components/material-design-icons/ic_cancel_black_24px.svg" flex></md-icon>
-          </div>
-          <div class="md-tile-content">
-            Log out
-          </div>
-        </md-button>
-
+  <div layout="column" flex id="top-toolbar">
+    <md-toolbar layout="row" layout-align="end center" md-whiteframe="3">
+      <md-button ng-click="logout()" ui-sref="login">
+        <div class="md-tile-content">
+          <md-icon md-svg-src="bower_components/material-design-icons/ic_cancel_black_24px.svg" flex></md-icon>
+        </div>
+        <div class="md-tile-content">
+          Log out
+        </div>
+      </md-button>
     </md-toolbar>
-    <!-- MAIN CONTENT PANE -->
 
-    <md-content flex class="md-padding page-content" id="main-content-pane">
-      <div ui-view>
-      <!-- PARTIALS ARE INJECTED HERE   -->
-      </div>
+    <md-content flex class="md-padding page-content" id="content-container">
+      <div ui-view></div>
     </md-content>
-
   </div>
-
-
 </div>
