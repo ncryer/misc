@@ -1,4 +1,46 @@
-<h1>View clients</h1>
+ <!-- TOP CONTAINER - SEARCH | ADD NEW MEMBER (modal) -->
+
+<div layout="row" class="md-padding" flex>
+
+  <!-- search -->
+  <md-input-container flex="30" id="member-search-container">
+    <label>Search...</label>
+    <input type="text" ng-model="searchTask" class="md-block" id="member-search-input"/>
+  </md-input-container>
+
+  <div class="button-container" layout-align="center center">
+    <md-button id="add-members" ng-click="addMemberModal()">
+      <div class="md-tile-content">
+        <md-icon md-svg-src="bower_components/material-design-icons/ic_person_add_black_24px.svg"></md-icon>
+      </div>
+      Add member
+    </md-button>
+  </div>
+</div>
+
+
+
+
+  <!-- CONTENT CONTAINER - ng-repeat of users, indexable by search -->
+  <div layout="column">
+
+    <md-content>
+      <md-list flex="40">
+        <!-- ng-click="memberDetailModal(member.$id)" -->
+        <md-list-item ng-repeat="member in members | filter: { fullname: searchTask }" >
+          <!-- avatar -->
+          <!-- <img ng-src="{{member.avatar}}" class="md-avatar" /> -->
+          <img ng-src="../../images/avatar.jpg" class="md-avatar" />
+          <h3>{{member.fullname}}</h3>
+        </md-list-item>
+      </md-list>
+
+      Member count: {{members.length}}
+
+    </md-content>
+  </div>
+
+
 <div ui-view>
 
 </div>

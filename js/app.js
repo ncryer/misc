@@ -13,24 +13,6 @@ var app = angular.module('rollcall', [
 
 
   // root
-  // $stateProvider.state('login', {
-  //   url: '/login',
-  //   views: {
-  //     "master": {
-  //       templateUrl: 'views/login.html',
-  //       controller: 'loginController'
-  //     }
-  //   }
-  // })
-  // .state('dashboard', {
-  //   url: '/dashboard',
-  //   views: {
-  //     "master": {
-  //       templateUrl: 'views/dashboard.html',
-  //       controller: 'dashController'
-  //     }
-  //   }
-  // })
   $stateProvider.state('login', {
     url: '/login',
     templateUrl: 'views/login.html',
@@ -44,6 +26,12 @@ var app = angular.module('rollcall', [
   .state('clients', {
     url: '/clients',
     templateUrl: 'views/partials/clients.html',
-    parent: 'dashboard'
-  })
+    parent: 'dashboard',
+    controller: 'clientController'
+  });
+
+})
+.config(function($mdThemingProvider){
+  // toast theme
+  $mdThemingProvider.theme('success-toast');
 });

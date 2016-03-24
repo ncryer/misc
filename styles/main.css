@@ -11,3 +11,31 @@ html {
 .login md-card {
   width: 300px;
 }
+
+.content-container {
+  background-color: #000;
+}
+
+
+
+/*CLIENT SEARCH BAR*/
+
+/*#member-search-container label {
+  font-size: 20;
+}
+
+#member-search-input {
+  height: 60px;
+}*/
+
+
+ /*CONFIGURATION OF TOASTS*/
+ /*from this link: http://codepen.io/Splaktar/pen/MKpeWM*/
+
+md-toast.md-success-toast-theme span {
+    color: #4CAF50;
+}
+
+md-toast.md-error-toast-theme span {
+    color: #F44336;
+}
