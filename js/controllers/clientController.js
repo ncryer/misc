@@ -1,11 +1,11 @@
-app.controller('clientController', function($scope, Auth, $mdDialog, $mdToast, ClientService){
-
+app.controller('clientController', function(FURL, $firebaseArray, $scope, Auth, $mdDialog, $mdToast, ClientService){
   var self = $scope;
+
+  var ref = new Firebase(FURL);
+
 
   self.members = ClientService.members;
 
-
-  // Member modal functionality
   self.addMemberModal = function(){
     $mdDialog.show({
       controller: 'clientController',
@@ -36,6 +36,8 @@ app.controller('clientController', function($scope, Auth, $mdDialog, $mdToast, C
       .textContent('Success!')
       .theme('success-toast')
       .position('top left right'));
+    // return ClientService.addMember(member);
+    console.log(member);
     return ClientService.addMember(member);
   };
 });

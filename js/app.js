@@ -7,8 +7,7 @@ var app = angular.module('rollcall', [
   'ngResource'
 ])
 .constant('FURL', 'https://rollcallalpha.firebaseio.com/')
-.config(function($stateProvider, $urlRouterProvider){
-
+.config(function($stateProvider, $urlRouterProvider, FURL){
   $urlRouterProvider.otherwise('login');
 
 
@@ -27,7 +26,12 @@ var app = angular.module('rollcall', [
     url: '/clients',
     templateUrl: 'views/partials/clients.html',
     parent: 'dashboard',
-    controller: 'clientController'
+    controller: 'clientController',
+    // resolve: {
+    //   refData: function(ClientService){
+    //     return ClientService.gymKeyPromise();
+    //   }
+    // }
   });
 
 })

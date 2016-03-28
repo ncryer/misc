@@ -1,35 +1,43 @@
-app.factory('ClientService', function($q){
+app.factory('ClientService', function(FURL, $window, $firebaseArray, Auth){
+
+  var ref = new Firebase(FURL);
+  var gymKey = $window.localStorage['gym-key'];
+  var gymRef = ref.child('gym').child(gymKey);
+  var profileRef = ref.child("profile");
+
+  var membersArray = $firebaseArray(gymRef.child("members"));
+
   var ClientService = {
-    members: [
-        {
-          fullname: "Dingle Berry"
-        },
-        {
-          fullname: "Tronald Dump"
-        }
-      ],
+    members: membersArray,
 
-      addMember: function(member){
-        var fullname = member.firstName + " " + member.lastName;
-        member.fullname = fullname;
-        this.members.push(member);
-      },
+    addMember: function(member){
+      console.log("fired addMember from clientservice");
+      // User is supplied by front-end... should really register a profile too
+      profileRef.orderByChild('email').equalTo(member.email).once('value', function(snapshot){
+        if(snapshot.exists()){
+          console.log("member was in database already");
+          // User is already registered in rollcall, update the gym field
+          var keyName = Object.keys(snapshot.val())[0];
+          var memberRef = profileRef.child(keyName).ref();
+          memberRef.update({gym: gymKey});
+          member.uid = keyName;
 
-      addMemberAsync: function(member){
-        var deferred = $q.defer();
-        var fullname = member.firstName + " " + member.lastName;
-        member.fullname = fullname;
-        try{
-          this.members.push(member);
-          deferred.resolve(true);
-          return deferred.promise;
+          // This is where Stripe integration eventually goes TODO!
+          return membersArray.$add(member);
+        } else {
+          console.log('doing new member');
+          // User does not exist in the system, should registered
+          member.gym = gymKey;
+          member.fullname = member.firstName + " " + member.lastName;
+          Auth.register(member).then(function(){
+            // Member registered in Firebase Auth and Profile, now added to gym
+            return membersArray.$add(member);
+          });
         }
-        catch(err) {
-          deferred.reject(false);
-          return deferred.promise;
-        }
-      }
+      });
+    },
+
   };
 
-  return ClientService
+  return ClientService;
 });

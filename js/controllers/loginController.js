@@ -1,11 +1,15 @@
-app.controller('loginController', function($scope, $state, Auth){
+app.controller('loginController', function($scope, $state, Auth, ClientService){
 
   var self = $scope;
 
   self.login = function(user){
 
     Auth.login(user).then(function(){
-      $state.transitionTo('dashboard');
+      // Set gym id in rootScope
+      // Auth.user.profile.$loaded().then(function(){
+      //   console.log('loaded triggered');
+      //   Auth.gymKey = Auth.user.profile.gym.toString();
+        $state.transitionTo('dashboard');
     }, function(err){
       console.log('error logging in');
     });
