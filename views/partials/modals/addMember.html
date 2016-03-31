@@ -1,5 +1,5 @@
 <md-dialog aria-label="Add member">
-  <md-dialog-content>
+  <md-dialog-content layout-padding>
     <!-- NAME | LASTNAME -->
     <form ng-submit="addMember(member)">
       <div layout="column">
@@ -19,10 +19,21 @@
           <label>Email</label>
           <input type="email" ng-model="member.email" required />
         </md-input-container>
+
+        <div layout="row">
+          <md-slider-container flex>
+            <md-input-container>
+              <label>Subscription plan</label>
+              <input type="number" ng-model="member.subscriptionType" aria-controls="sub-slider" disabled/>
+            </md-input-container>
+            <md-slider class="md-accent" ng-model="member.subscriptionType" md-discrete step="1" min="1" max="5" id="sub-slider" md-vertical></md-slider>
+          </md-slider-container>
+        </div>
+
       </div>
 
       <div class="md-tile-content">
-        <md-button class="md-raised md-primary" type="submit" layout-align="center center" ng-click="modalResponse()">Submit</md-button>
+        <md-button class="md-raised md-primary" type="submit" layout-align="center center">Submit</md-button>
       </div>
 
     </form>

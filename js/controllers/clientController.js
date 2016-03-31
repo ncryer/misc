@@ -1,9 +1,8 @@
-app.controller('clientController', function(FURL, $firebaseArray, $scope, Auth, $mdDialog, $mdToast, ClientService){
+app.controller('clientController', function(FURL, $scope, $mdDialog, $mdToast, ClientService, $firebaseObject){
   var self = $scope;
 
   var ref = new Firebase(FURL);
-
-
+  self.member = null;
   self.members = ClientService.members;
 
   self.addMemberModal = function(){
@@ -11,33 +10,51 @@ app.controller('clientController', function(FURL, $firebaseArray, $scope, Auth, 
       controller: 'clientController',
       templateUrl: '../../views/partials/modals/addMember.html',
       clickOutsideToClose:true
-    })
-    // .then(function(data){
-    //   console.log("Member added");
-    //   $mdDialog.hide();
-    // }, function(){
-    //   console.log("Dialog cancelled");
-    // });
+    });
   };
-
-  self.modalResponse = function(){
-    // Depending on whether adding members was a success,
-    // this function is responsible for closing the modal with a correct
-    // response.
-    // Bound to: ng-click @ partials/modals/addMember.html
-    $mdDialog.hide();
-  };
-
 
   // Functions
   self.addMember = function(member){
+    ClientService.addMember(member);
     $mdToast.show(
-      $mdToast.simple()
-      .textContent('Success!')
-      .theme('success-toast')
-      .position('top left right'));
-    // return ClientService.addMember(member);
-    console.log(member);
-    return ClientService.addMember(member);
+          $mdToast.simple()
+          .textContent('Success')
+          .theme('success-toast')
+          .position('top left right'));
+    $mdDialog.hide();
   };
+
+  self.memberDetailsModal = function(e, member){
+    $mdDialog.show({
+      templateUrl: '../../views/partials/modals/memberDetails.html',
+      clickOutsideToClose: true,
+      controller: function($mdDialog, $mdToast, ClientService){
+        var vm = this;
+        vm.EditMode = false;
+
+        vm.member = {};
+        vm.member = $firebaseObject(ref.child("profile").child(member.$id));
+
+        vm.save = function(){
+          // Preserve member.fullname if names were edited
+          vm.member.fullname = vm.member.firstName + " " + vm.member.lastName;
+          ClientService.saveMemberEdit(vm.member).then(function(){
+            $mdToast.show(
+                  $mdToast.simple()
+                  .textContent('Success')
+                  .theme('success-toast')
+                  .position('top left right'));
+            // Save member profile in gym.members too
+            $mdDialog.hide();
+          });
+          // vm.member.$save().then(function(){
+
+          // });
+        };
+
+      },
+      controllerAs: 'modal',
+      targetEvent: e
+    });
+  }
 });

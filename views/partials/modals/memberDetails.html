@@ -1,5 +1,68 @@
-<md-dialog>
-  <md-dialog-content>
+<md-dialog aria-label="Member details">
+  <md-dialog-content layout-padding>
+
+    <div layout="column">
+
+
+      <!-- USER PICTURE -->
+      <div class="edit-profile-pic" layout="column" layout-align="center center">
+        <img ng-src="../../images/avatar.jpg" />
+      </div>
+
+      <!-- EDIT TOGGLE -->
+      <md-input-container>
+        <md-switch ng-model="EditMode">Edit: {{ EditMode ? "On" : "Off"}}</md-switch>
+      </md-input-container>
+
+
+
+      <!-- firstname | lastname -->
+
+      <div layout="row">
+        <md-input-container flex="50">
+          <label>First name</label>
+          <input type="text" ng-model="modal.member.firstName" required ng-disabled="!EditMode"/>
+        </md-input-container>
+
+        <md-input-container flex="50">
+          <label>Last name</label>
+          <input type="text" ng-model="modal.member.lastName" required ng-disabled="!EditMode"/>
+        </md-input-container>
+      </div>
+
+
+      <md-input-container>
+        <label>Email</label>
+        <input type="email" ng-model="modal.member.email" required ng-disabled="!EditMode" />
+      </md-input-container>
+
+      <!-- subscription -->
+
+      <div layout="row">
+        <md-slider-container flex>
+          <md-input-container>
+            <label>Subscription plan</label>
+            <input type="number" ng-model="modal.member.subscriptionType" aria-controls="sub-slider" disabled/>
+          </md-input-container>
+          <md-slider aria-label="Subscription slider" ng-hide="!EditMode" class="md-accent" ng-model="modal.member.subscriptionType" md-discrete step="1" min="1" max="5" id="sub-slider" md-vertical></md-slider>
+        </md-slider-container>
+      </div>
+
+      <md-switch class="md-primary" ng-disabled="!EditMode" ng-model="modal.member.subscription">Subscription status: {{ modal.member.subscription ? "Active" : "Inactive" }}</md-switch>
+
+      <div layout="row">
+        <div class="md-tile-content">
+          <md-button class="md-raised md-primary" layout-align="center center" ng-click="modal.save()">Save</md-button>
+        </div>
+        <div class="md-tile-content">
+          <md-button class="md-raised md-primary" layout-align="center center" ng-click="modal.cancel()">Cancel</md-button>
+        </div>
+      </div>
+    </div>
+
+
+
+
 
   </md-dialog-content>
 </md-dialog>

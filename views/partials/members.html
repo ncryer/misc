@@ -23,23 +23,15 @@
 
   <!-- CONTENT CONTAINER - ng-repeat of users, indexable by search -->
   <div layout="column">
-
+    Member count: {{members.length}}
     <md-content>
       <md-list flex="40">
-        <!-- ng-click="memberDetailModal(member.$id)" -->
-        <md-list-item ng-repeat="member in members | filter: { fullname: searchTask }" >
-          <!-- avatar -->
-          <!-- <img ng-src="{{member.avatar}}" class="md-avatar" /> -->
-          <img ng-src="../../images/avatar.jpg" class="md-avatar" />
+        <md-list-item ng-repeat="member in members | filter: { fullname: searchTask }" ng-click="memberDetailsModal($event, member)">
+          <img src="../../images/avatar.jpg" class="md-avatar" />
           <h3>{{member.firstName}} {{member.lastName}}</h3>
         </md-list-item>
       </md-list>
 
-      Member count: {{members.length}}
-      <pre>
-        {{testKey}}
-        {{gymKey}}
-      </pre>
     </md-content>
   </div>
 

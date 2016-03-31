@@ -1,4 +1,4 @@
-app.controller('loginController', function($scope, $state, Auth, ClientService){
+app.controller('loginController', function($scope, $state, Auth){
 
   var self = $scope;
 
