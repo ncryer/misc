@@ -1,0 +1,43 @@
+<md-dialog aria-label="Timeslot">
+  <md-dialog-content>
+
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h3>Add classes to timeslot</h3>
+      </div>
+    </md-toolbar>
+
+    <div layout="row" layout-align="end center" flex>
+      <span class="addClassBtn" layout-align="center end">
+        <md-button class="md-fab md-mini" ng-click="modal.incrementNumClasses()">
+          <md-icon md-svg-src="bower_components/material-design-icons/ic_add_black_24px.svg"></md-icon>
+        </md-button>
+      </span>
+    </div>
+
+    <div layout="column" layout-padding>
+      <md-input-container layout-align="start center" ng-repeat="i in modal.range(modal.numClasses) track by $index">
+
+        <label>Classes</label>
+        <md-select ng-model="modal.selectedClasses[$index]">
+          <md-option ng-value="myClass" ng-repeat="myClass in modal.classes">{{myClass.title}}</md-option>
+        </md-select>
+      </md-input-container>
+    </div>
+
+
+    <div layout="row" layout-align="center center">
+      <div class="md-tile-content">
+        <md-button class="md-raised md-primary" ng-click="modal.save()">Save</md-button>
+      </div>
+
+      <div class="md-tile-content">
+        <md-button class="md-raised md-primary" ng-click="modal.delete(calendarEvent)">Delete</md-button>
+      </div>
+    </div>
+
+
+
+
+  </md-dialog-content>
+</md-dialog>

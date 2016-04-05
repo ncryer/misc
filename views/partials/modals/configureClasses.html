@@ -1,0 +1,53 @@
+<md-dialog aria-label="Configure classes">
+  <md-dialog-content layout-padding>
+
+    <div layout="row" flex>
+
+
+      <div layout="column" flex>
+        <form ng-submit="modal.addClass(modal.myClass)">
+          <md-input-container>
+            <label>Title</label>
+            <input type="text" ng-model="modal.myClass.title" required />
+          </md-input-container>
+
+          <md-input-container>
+            <label>Location (optional)</label>
+            <input type="text" ng-model="modal.myClass.location" />
+          </md-input-container>
+
+          <div class="md-tile-content">
+            <md-button type="submit" class="md-raised md-primary">
+              Add class
+            </md-button>
+          </div>
+
+        </form>
+      </div>
+
+      <md-divider></md-divider>
+
+
+
+      <div layout="column" layout-padding flex>
+        <div layout-align="center center">
+          <h3>Classes</h3>
+        </div>
+
+        <md-list>
+          <md-list-item class="md-3-line" ng-repeat="myClass in modal.classes" ng-click="null">
+            <div class="md-list-item-text" layout="column">
+              <h3>{{myClass.title}}</h3>
+
+              <p>
+                {{myClass.location}}
+              </p>
+            </div>
+          </md-list-item>
+        </md-list>
+      </div>
+
+    </div>
+
+  </md-dialog-content>
+</md-dialog>

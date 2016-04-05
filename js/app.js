@@ -1,5 +1,6 @@
 var app = angular.module('rollcall', [
   'ui.router',
+  'ui.calendar',
   'ngMaterial',
   'firebase',
   'angularMoment',
@@ -13,6 +14,9 @@ var app = angular.module('rollcall', [
     profile: FURL + 'profile',
     gym: FURL + 'gym'
   })
+})
+.config(function($animateProvider){
+   $animateProvider.classNameFilter(/^(?:(?!ng-animate-disabled).)*$/);
 })
 .config(function($stateProvider, $urlRouterProvider, FURL){
   $urlRouterProvider.otherwise('login');
@@ -38,7 +42,6 @@ var app = angular.module('rollcall', [
     controller: 'clientController',
     resolve: {
       function(Auth, $firebaseRef){
-        console.log($firebaseRef.gym.toString());
         return Auth.getProfile();
       }
     }
@@ -51,6 +54,12 @@ var app = angular.module('rollcall', [
   .state('shop',{
     url: '/shop',
     templateUrl: 'views/partials/shop.html',
+    parent: 'dashboard'
+  })
+  .state('classes', {
+    url: '/classes',
+    templateUrl: 'views/partials/classes.html',
+    controller: 'classController',
     parent: 'dashboard'
   });
 })

@@ -1,39 +1,41 @@
  <!-- TOP CONTAINER - SEARCH | ADD NEW MEMBER (modal) -->
+<div class="ng-animate-disabled">
+  <div layout="row" class="md-padding" flex>
 
-<div layout="row" class="md-padding" flex>
+    <!-- search -->
+    <md-input-container flex="30" id="member-search-container">
+      <label>Search...</label>
+      <input type="text" ng-model="searchTask" class="md-block" id="member-search-input"/>
+    </md-input-container>
 
-  <!-- search -->
-  <md-input-container flex="30" id="member-search-container">
-    <label>Search...</label>
-    <input type="text" ng-model="searchTask" class="md-block" id="member-search-input"/>
-  </md-input-container>
-
-  <div class="button-container" layout-align="center center">
-    <md-button id="add-members" ng-click="addMemberModal()">
-      <div class="md-tile-content">
-        <md-icon md-svg-src="bower_components/material-design-icons/ic_person_add_black_24px.svg"></md-icon>
-      </div>
-      Add member
-    </md-button>
+    <div class="button-container" layout-align="center center">
+      <md-button id="add-members" ng-click="addMemberModal()">
+        <div class="md-tile-content">
+          <md-icon md-svg-src="bower_components/material-design-icons/ic_person_add_black_24px.svg"></md-icon>
+        </div>
+        Add member
+      </md-button>
+    </div>
   </div>
+
+
+
+
+    <!-- CONTENT CONTAINER - ng-repeat of users, indexable by search -->
+    <div layout="column">
+      Member count: {{members.length}}
+      <md-content>
+        <md-list flex="40">
+          <md-list-item ng-repeat="member in members | filter: { fullname: searchTask, subscription: active }" ng-click="memberDetailsModal($event, member)">
+            <img src="../../images/avatar.jpg" class="md-avatar" />
+            <h3>{{member.firstName}} {{member.lastName}}</h3>
+          </md-list-item>
+        </md-list>
+
+      </md-content>
+    </div>
+
 </div>
-
-
-
-
-  <!-- CONTENT CONTAINER - ng-repeat of users, indexable by search -->
-  <div layout="column">
-    Member count: {{members.length}}
-    <md-content>
-      <md-list flex="40">
-        <md-list-item ng-repeat="member in members | filter: { fullname: searchTask }" ng-click="memberDetailsModal($event, member)">
-          <img src="../../images/avatar.jpg" class="md-avatar" />
-          <h3>{{member.firstName}} {{member.lastName}}</h3>
-        </md-list-item>
-      </md-list>
-
-    </md-content>
-  </div>
 
 
 <div ui-view>

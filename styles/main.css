@@ -31,3 +31,9 @@ md-toast.md-success-toast-theme span {
 md-toast.md-error-toast-theme span {
     color: #F44336;
 }
+
+
+.addClassBtn {
+  /*position: absolute;*/
+  margin-top: -27px;
+}

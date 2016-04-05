@@ -52,6 +52,11 @@ app.controller('clientController', function(FURL, $scope, $mdDialog, $mdToast, C
           // });
         };
 
+        vm.cancel = function(){
+          vm.member = {};
+          $mdDialog.hide();
+        };
+
       },
       controllerAs: 'modal',
       targetEvent: e

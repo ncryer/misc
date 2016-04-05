@@ -8,6 +8,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="styles/animate.css" />
     <link rel="stylesheet" href="styles/animations.css" />
+    <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css" />
     <link rel="stylesheet" href="node_modules/angular-material/angular-material.css" />
     <link rel="stylesheet" href="styles/main.css" />
 
@@ -23,13 +24,26 @@
 
 
     <!-- JS LIBS -->
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script>
+    // this is needed to get jquery to work on electron
+    try {
+        $ = jQuery = module.exports;
+        // If you want module.exports to be empty, uncomment:
+        // module.exports = {};
+    } catch(e) {}
+    </script>
+    <script src="node_modules/moment/moment.js"></script>
     <script src="node_modules/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/angular-ui-calendar/src/calendar.js"></script>
+    <script type="text/javascript" src="bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+    <script type="text/javascript" src="bower_components/fullcalendar/dist/lang-all.js"></script>
+    <script type="text/javascript" src="bower_components/fullcalendar/dist/gcal.js"></script>
     <script src="node_modules/angular-animate/angular-animate.js"></script>
     <script src="node_modules/angular-resource/angular-resource.js"></script>
     <script src="node_modules/angular-aria/angular-aria.js"></script>
     <script src="node_modules/angular-material/angular-material.js"></script>
     <script src="node_modules/angular-messages/angular-messages.js"></script>
-    <script src="node_modules/moment/moment.js"></script>
     <script src="node_modules/angular-moment/angular-moment.js"></script>
     <script src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/firebase/firebase.js"></script>
@@ -40,10 +54,12 @@
     <script src="js/controllers/loginController.js"></script>
     <script src="js/controllers/dashController.js"></script>
     <script src="js/controllers/clientController.js"></script>
+    <script src="js/controllers/classController.js"></script>
     <!-- SERVICES -->
     <script src="js/services/auth.js"></script>
     <script src="js/services/clients.js"></script>
     <script src="js/services/util.js"></script>
+    <script src="js/services/class.js"></script>
 
   </body>
 </html>
