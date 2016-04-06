@@ -1,9 +1,8 @@
 app.controller('classController', function($scope, uiCalendarConfig, $mdDialog, ClassService){
   var self = $scope;
 
-  // Store intermediate events here before adding classes and saving to fb
-  var tempEvents = [];
   var events = ClassService.events;
+
 
   self.configureClassModal = function(){
     $mdDialog.show({
@@ -34,7 +33,6 @@ app.controller('classController', function($scope, uiCalendarConfig, $mdDialog, 
       controllerAs: 'modal',
       controller: function($mdDialog, ClassService){
         var vm = this;
-
         vm.classes = ClassService.classes;
 
         vm.range = function(n){
@@ -52,37 +50,42 @@ app.controller('classController', function($scope, uiCalendarConfig, $mdDialog, 
         };
 
         vm.save = function(){
+          // Retrieve event from list
+          var myEvent = ClassService.events.$getRecord(calendarEvent.$id);
+
           var title = "";
-          calendarEvent.classes = [];
+          myEvent.classes = [];
           for(key in vm.selectedClasses){
             var classObject = vm.selectedClasses[key];
             // Add class to event
-            calendarEvent.classes.push(classObject);
+            myEvent.classes.push(classObject);
             var stringRepr = classObject.title + " | " + classObject.location + "\n";
             title += stringRepr;
           }
           // Increment the event's numClasses
-          calendarEvent.numClasses = vm.numClasses;
+          myEvent.numClasses = vm.numClasses;
           // Save title for rendering
-          calendarEvent.title = title;
-          // re-render and hide
-          console.log(calendarEvent);
-          uiCalendarConfig.calendars['myCalendar'].fullCalendar('rerenderEvents');
-          $mdDialog.hide();
+          myEvent.title = title;
+          // Event can now be synced
+          ClassService.events.$save(myEvent).then(function(){
+            // re-render and hide
+            uiCalendarConfig.calendars['myCalendar'].fullCalendar('rerenderEvents');
+            $mdDialog.hide();
+          });
         };
 
         vm.delete = function(){
-          self.removeEvent(calendarEvent.index);
-          $mdDialog.hide();
+          var myEvent = ClassService.events.$getRecord(calendarEvent.$id);
+          ClassService.events.$remove(myEvent).then(function(){
+            // Rerender
+            uiCalendarConfig.calendars['myCalendar'].fullCalendar('rerenderEvents');
+            $mdDialog.hide();
+          });
         };
       }
     });
   };
 
-
-  self.removeEvent = function(index){
-    events.splice(index,1);
-  };
 
   self.calendarOptions = {
 
@@ -117,6 +120,7 @@ app.controller('classController', function($scope, uiCalendarConfig, $mdDialog, 
         numClasses: 1
       }
       self.addEvent(eventData);
+
     },
 
     eventClick: self.timeslotDetailsModal
@@ -124,15 +128,12 @@ app.controller('classController', function($scope, uiCalendarConfig, $mdDialog, 
   };
 
   self.addEvent = function(event){
-    // Set an index for removal purposes
-    if(events.length === 0){
-      var idx = 0
-    } else {
-      var idx = events.length - 1;
-    }
-    event.index = idx;
-    tempEvents.push(event);
+    event.start = event.start.toString();
+    event.end = event.end.toString();
+    ClassService.events.$add(event);
   };
-  self.eventSources = [tempEvents];
 
+
+  // set the calendar's events
+  self.eventSources = [events];
 });
