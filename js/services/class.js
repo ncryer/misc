@@ -23,14 +23,18 @@ app.factory('ClassService', function(Utils, $firebaseArray, $firebaseRef){
 
 
     // Event methods
-    addEvent: function(myEvent){
-      console.log(myEvent);
-      return eventsArray.$add(myEvent);
+    addEvent: function(event){
+      event.start = event.start.toString();
+      event.end = event.end.toString();
+      return ClassService.events.$add(event);
     },
 
-    // removeEvent: function(index){
-    //
-    // },
+    deleteEvent: function(event){
+      console.log(event);
+      return ClassService.events.$remove(event.$id).then(function(){
+        console.log("removed");
+      });
+    },
 
   };
 
