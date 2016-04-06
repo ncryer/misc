@@ -1,6 +1,8 @@
 app.controller('classController', function($scope, uiCalendarConfig, $mdDialog, ClassService){
   var self = $scope;
 
+  // Store intermediate events here before adding classes and saving to fb
+  var tempEvents = [];
   var events = ClassService.events;
 
   self.configureClassModal = function(){
@@ -40,10 +42,7 @@ app.controller('classController', function($scope, uiCalendarConfig, $mdDialog, 
           return new Array(n);
         };
 
-
         // Fetch event details
-
-
 
         vm.numClasses = calendarEvent.numClasses;
         vm.selectedClasses = calendarEvent.classes || {};
@@ -132,8 +131,8 @@ app.controller('classController', function($scope, uiCalendarConfig, $mdDialog, 
       var idx = events.length - 1;
     }
     event.index = idx;
-    ClassService.addEvent(event);
+    tempEvents.push(event);
   };
-  self.eventSources = [events];
+  self.eventSources = [tempEvents];
 
 });
