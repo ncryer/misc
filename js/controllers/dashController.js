@@ -5,5 +5,15 @@ app.controller('dashController', function($scope, $state, Auth){
   self.logout = function(){
     Auth.logout();
     $state.transitionTo('login');
-  }
-});
+
+  
+  $scope.toggleLeft = buildToggler('left');
+
+function buildToggler(navID) {
+    var debounceFn = $mdUtil.debounce(function () {
+        $mdSidenav(navID)
+            .toggle()
+    }, 100);
+    return debounceFn;
+   };
+}}]);

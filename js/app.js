@@ -7,6 +7,7 @@ var app = angular.module('rollcall', [
   'ngAnimate',
   'ngResource'
 ])
+
 .constant('FURL', 'https://rollcallalpha.firebaseio.com/')
 .config(function(FURL, $firebaseRefProvider){
   $firebaseRefProvider.registerUrl({
@@ -20,6 +21,7 @@ var app = angular.module('rollcall', [
 })
 .config(function($stateProvider, $urlRouterProvider, FURL){
   $urlRouterProvider.otherwise('login');
+
 
 
   // root
