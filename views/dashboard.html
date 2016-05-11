@@ -1,18 +1,23 @@
-<div layout="row" layout-fill id="dashboard-box">
-<body>
+<div layout="row" layout-fill id="dashboard-box" md-theme="custom">
+    <body>
   <!-- SIDENAV  -->
-  <md-sidenav class="md-sidenav-left" layout="column" md-whiteframe="3" layout-fill id="sidebar-container" md-component-id="left">
+  <md-sidenav class="md-sidenav-left"  layout="column" md-component-id="left">
   <!-- Here should be a little thingy in the top left corner -->
+  
     <md-toolbar>
-    <div class="md-toolbar-tools">
-        <md-button class="md-icon-button" ng-click="toggleLeft()">
-		<md-icon md-svg-src="bower_components/material-design-icons/menu.svg"></md-icon>
+		<div class="md-toolbar-tools">
+          <span flex></span>
+          
+
+        <md-button class="md-icon-button" ng-click="toggleLeft()" aria-label="Close Side Panel">
+          <md-tooltip>Close Side Panel</md-tooltip>
+          <md-icon md-svg-src="bower_components/material-design-icons/ic_close_white_24px.svg" flex></md-icon>
         </md-button>
     </div>
 </md-toolbar>
 
-<md-content flex>
-    <md-sidenav md-component-id="left" class="md-sidenav-left md-whiteframe-z2" layout="column">
+<md-content class="md-primary" flex>
+    <md-sidenav  md-component-id="left" class="md-sidenav-left md-whiteframe-z2" layout="column">
         <md-list>
             <md-list-item>
 
@@ -29,76 +34,58 @@
 
 
     <!-- MENU ITEMS -->
-    <md-list class="menu">
-      <md-list-item>
-          <md-button flex ui-sref="dashboard">
-            <div class="md-tile-content">
-              <md-icon md-svg-src="bower_components/material-design-icons/ic_home_black_24px.svg" class="md-48"></md-icon>
-            </div>
-            <div class="menu-content md-tile-content">
-              Dashboard
-            </div>s
-          </md-button>
-      </md-list-item>
+    <md-menu" layout="column">
+	   <md-menu-item>
+          <md-button ui-sref="dashboard" aria-label="dashboard">
+		   		<md-icon md-svg-src="bower_components/material-design-icons/ic_home_black_24px.svg" class="md-48"></md-icon>
+				DASHBOARD
+            </md-button>
+      </md-menu-item>
 
-      <md-list-item>
-          <md-button flex ui-sref="members">
-            <div class="md-tile-content">
+      <md-menu-item>
+
+          <md-button ui-sref="members">
               <md-icon md-svg-src="bower_components/material-design-icons/ic_people_black_24px.svg" class="md-48"></md-icon>
-            </div>
-            <div class="menu-content md-tile-content">
-              Members
-            </div>
-          </md-button>
-      </md-list-item>
+				MEMBERS
+           </md-button>
+      </md-menu-item>
 
 
-      <md-list-item>
-        <md-button flex ui-sref="shop">
-          <div class="md-tile-content">
+      <md-menu-item>
+	  
+        <md-button ui-sref="shop">
             <md-icon md-svg-src="bower_components/material-design-icons/ic_shopping_cart_black_24px.svg" class="md-48"></md-icon>
-          </div>
-          <div class="menu-content md-tile-content">
-            Shop
-          </div>
+			SHOP        
         </md-button>
-      </md-list-item>
+      </md-menu-item>
 
-      <md-list-item>
-        <md-button flex ui-sref="classes">
-          <div class="md-tile-content">
-            <md-icon md-svg-src="bower_components/material-design-icons/ic_featured_play_list_black_24px.svg" class="md-48"></md-icon>
-          </div>
-          <div class="menu-content md-tile-content">
-            Classes
-          </div>
+      <md-menu-item>
+        <md-button ui-sref="classes">
+            <md-icon md-svg-src="bower_components/material-design-icons/ic_featured_play_list_black_24px.svg"></md-icon>
+			CLASSES 
         </md-button>
-      </md-list-item>
+      </md-menu-item>
 
-      <md-list-item>
-        <md-button flex ui-sref="chat">
-          <div class="md-tile-content">
-            <md-icon md-svg-src="bower_components/material-design-icons/ic_sms_black_24px.svg" class="md-48"></md-icon>
-          </div>
-          <div class="menu-content md-tile-content">
-            CHAT
-          </div>
+      <md-menu-item>
+        <md-button ui-sref="chat">
+            <md-icon md-svg-src="bower_components/material-design-icons/ic_sms_black_24px.svg"></md-icon>
+			CHAT
         </md-button>
-      </md-list-item>
+      </md-menu-item>
 
-    </md-list>
+    </md-menu>
   </md-sidenav>
 
   <!-- TOP TOOLBAR AND CONTENT -->
 
   <div layout="column" flex id="top-toolbar">
-    <md-toolbar layout="row" layout-align="end center" md-whiteframe="3">
+    <md-toolbar layout="row" layout-align="space-between center" md-whiteframe="3">
+	<md-button layout-align="left" ng-click="toggleLeft()">
+		<md-icon md-svg-src="bower_components/material-design-icons/ic_menu_white_48px.svg"></md-icon>
+        </md-button>
       <md-button ng-click="logout()" ui-sref="login">
         <div class="md-tile-content">
-          <md-icon md-svg-src="bower_components/material-design-icons/ic_cancel_black_24px.svg" flex></md-icon>
-        </div>
-        <div class="md-tile-content">
-          Log out
+          <md-icon md-svg-src="bower_components/material-design-icons/ic_lock_white_48px.svg" flex></md-icon>
         </div>
       </md-button>
     </md-toolbar>
@@ -107,5 +94,5 @@
       <div ui-view></div>
     </md-content>
   </div>
-  </body>
+</body>
 </div>
