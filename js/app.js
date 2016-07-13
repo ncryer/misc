@@ -5,7 +5,8 @@ var app = angular.module('rollcall', [
   'firebase',
   'angularMoment',
   'ngAnimate',
-  'ngResource'
+  'ngResource',
+  'ngMdIcons',
 ])
 
 .constant('FURL', 'https://rollcallalpha.firebaseio.com/')
@@ -70,42 +71,42 @@ var app = angular.module('rollcall', [
   $mdThemingProvider.theme('success-toast');
 
   $mdThemingProvider.theme('default')
-          .primaryPalette('blue')
+          .primaryPalette('teal')
           .accentPalette('indigo')
           .warnPalette('pink')
           .backgroundPalette('grey');
 
-  $mdThemingProvider.theme('custom')
-          .primaryPalette('grey')
-          .accentPalette('deep-purple')
-          .warnPalette('teal')
-
-    //create yr own palette 
-  $mdThemingProvider.definePalette('amazingPaletteName', {
-        '50': 'ffebee',
-        '100': 'ffcdd2',
-        '200': 'ef9a9a',
-        '300': 'e57373',
-        '400': 'ef5350',
-        '500': 'f44336',
-        '600': 'e53935',
-        '700': 'd32f2f',
-        '800': 'c62828',
-        '900': 'b71c1c',
-        'A100': 'ff8a80',
-        'A200': 'ff5252',
-        'A400': 'ff1744',
-        'A700': 'd50000',
-        'contrastDefaultColor': 'light',    // whether, by default, text         (contrast)
-                                    // on this palette should be dark or light
-        'contrastDarkColors': ['50', '100', //hues which contrast should be 'dark' by default
-         '200', '300', '400', 'A100'],
-        'contrastLightColors': undefined    // could also specify this if default was 'dark'
+  $mdThemingProvider.theme('dark')
+  .dark()
+          .primaryPalette('grey', {
+      'default': '800', // by default use shade 400 from the pink palette for primary intentions
+      'hue-1': '600', // use shade 100 for the <code>md-hue-1</code> class
+      'hue-2': '500', // use shade 600 for the <code>md-hue-2</code> class
+      'hue-3': 'A100' // use shade A100 for the <code>md-hue-3</code> class
+    })
+          .accentPalette('teal')
+          .warnPalette('deep-purple')
+		  .backgroundPalette('grey', {
+      'default': '600' // use shade 200 for default, and keep all other shades the same
+    });
+ $mdThemingProvider.theme('light-on-dark')
+        .primaryPalette('pink')
+        .dark()
+        .foregroundPalette['3'] ='rgba(198,198,198,0.9)';
+  
+  $mdThemingProvider.theme('Custom')
+            .primaryPalette('teal', {
+      'default': '500', // by default use shade 400 from the pink palette for primary intentions
+      'hue-1': '400', // use shade 100 for the <code>md-hue-1</code> class
+      'hue-2': '300', // use shade 600 for the <code>md-hue-2</code> class
+      'hue-3': '200' // use shade A100 for the <code>md-hue-3</code> class
+    })
+          .accentPalette('teal', {
+		  'default': '600' // use shade 200 for default, and keep all other shades the same
+    })
+          .warnPalette('deep-purple')
+		  .backgroundPalette('grey', {
+      'default': '100' // use shade 200 for default, and keep all other shades the same
     });
 
- $mdThemingProvider.theme('custom2')
-        .primaryPalette('amazingPaletteName')
-
 });
-
-

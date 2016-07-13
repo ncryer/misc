@@ -14,25 +14,10 @@ html {
   width: 300px;
 }
 
-.md-toolbar {
-  /* Put top toolbar on a higher layer than sidenav, which has z-index: 60 */
-  z-index: 59;
-
-  /* Cosmetic */
-  background-color: green;
+md-menu-item
+ md-button {
+    display: inline;
 }
-
-
-.md-sidenav-left {
-  /* Cosmetic, show where the fill starts */
-  background-color: 
-  
- min-width: 200px !important;
- width: 50vw !important;
- max-width: 200px !important;
-}
-
-
 
 .content-container {
   background-color: #000;
@@ -44,6 +29,8 @@ html {
 font-family: 'Roboto Condensed', sans-serif;
 	font-weight: normal;
 	font-style: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 
@@ -55,7 +42,17 @@ body {
     background: #f3f3f3;
 	font-family: 'Roboto Condensed', sans-serif;
     color: #333333 !important;
-	
+}
+
+a {
+ color: #009688;
+ -webkit-transition: color 1s ease-in; /*safari and chrome */
+ -moz-transition: color 1s ease-in; /* firefox */
+ -o-transition: color 1s ease-in; /* opera */
+}
+
+a:hover { 
+ color: #009688;
 }
 
 /*MEMBER DETAILS CSS*/
@@ -66,7 +63,7 @@ body {
  /*from this link: http://codepen.io/Splaktar/pen/MKpeWM*/
 
 md-toast.md-success-toast-theme span {
-    color: #4CAF50;
+    color: #fffff;
 }
 
 md-toast.md-error-toast-theme span {

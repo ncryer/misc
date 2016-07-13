@@ -18,8 +18,7 @@ app.controller('dashController', function($mdComponentRegistry, $mdUtil, $mdSide
       $mdSidenav(navID)
         .toggle()
         .then(function () {
-          console.log("toggled");
-        });
+         });
     },300);
     return debounceFn;
   };

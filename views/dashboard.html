@@ -1,7 +1,8 @@
-<div layout="row" layout-fill id="dashboard-box" md-theme="custom">
+<div layout="row" layout-fill id="dashboard-box" md-theme="Custom">
     <body>
   <!-- SIDENAV  -->
-  <md-sidenav class="md-sidenav-left"  layout="column" md-component-id="left">
+   <div md-theme="dark">
+  <md-sidenav class="md-sidenav-left"  layout="column" md-component-id="left" >
   <!-- Here should be a little thingy in the top left corner -->
   
     <md-toolbar>
@@ -16,8 +17,8 @@
     </div>
 </md-toolbar>
 
-<md-content class="md-primary" flex>
-    <md-sidenav  md-component-id="left" class="md-sidenav-left md-whiteframe-z2" layout="column">
+<md-content flex>
+    <md-sidenav md-component-id="left" class="md-sidenav-left md-whiteframe-z2" layout="column">
         <md-list>
             <md-list-item>
 
@@ -34,52 +35,58 @@
 
 
     <!-- MENU ITEMS -->
-    <md-menu" layout="column">
+    <md-menu layout="column">
 	   <md-menu-item>
-          <md-button ui-sref="dashboard" aria-label="dashboard">
-		   		<md-icon md-svg-src="bower_components/material-design-icons/ic_home_black_24px.svg" class="md-48"></md-icon>
+          <md-button ui-sref="dashboard" aria-label="dashboard" >
+            <md-icon md-svg-src="bower_components/material-design-icons/ic_menu_white_48px.svg" class="md-48" ></md-icon>
 				DASHBOARD
             </md-button>
       </md-menu-item>
+<md-divider md-inset></md-divider>
 
       <md-menu-item>
 
           <md-button ui-sref="members">
-              <md-icon md-svg-src="bower_components/material-design-icons/ic_people_black_24px.svg" class="md-48"></md-icon>
-				MEMBERS
+            <md-icon md-svg-src="bower_components/material-design-icons/ic_person_pin_white_24px.svg" class="md-48" ></md-icon>
+			MEMBERS
            </md-button>
       </md-menu-item>
+<md-divider md-inset></md-divider>
 
 
       <md-menu-item>
 	  
         <md-button ui-sref="shop">
-            <md-icon md-svg-src="bower_components/material-design-icons/ic_shopping_cart_black_24px.svg" class="md-48"></md-icon>
+            <md-icon md-svg-src="bower_components/material-design-icons/ic_shopping_cart_white_24px.svg" class="md-48" ></md-icon>
 			SHOP        
         </md-button>
       </md-menu-item>
+<md-divider md-inset></md-divider>
+
 
       <md-menu-item>
         <md-button ui-sref="classes">
-            <md-icon md-svg-src="bower_components/material-design-icons/ic_featured_play_list_black_24px.svg"></md-icon>
+            <md-icon md-svg-src="bower_components/material-design-icons/ic_featured_play_list_white_24px.svg"></md-icon>
 			CLASSES 
         </md-button>
       </md-menu-item>
+<md-divider md-inset></md-divider>
 
       <md-menu-item>
         <md-button ui-sref="chat">
-            <md-icon md-svg-src="bower_components/material-design-icons/ic_sms_black_24px.svg"></md-icon>
+            <md-icon md-svg-src="bower_components/material-design-icons/ic_sms_white_24px.svg"></md-icon>
 			CHAT
         </md-button>
       </md-menu-item>
+<md-divider></md-divider>
 
     </md-menu>
   </md-sidenav>
-
+</div>
   <!-- TOP TOOLBAR AND CONTENT -->
 
   <div layout="column" flex id="top-toolbar">
-    <md-toolbar layout="row" layout-align="space-between center" md-whiteframe="3">
+    <md-toolbar class="md-accent" layout="row" layout-align="space-between center" md-whiteframe="3">
 	<md-button layout-align="left" ng-click="toggleLeft()">
 		<md-icon md-svg-src="bower_components/material-design-icons/ic_menu_white_48px.svg"></md-icon>
         </md-button>
